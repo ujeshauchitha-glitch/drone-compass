@@ -1,0 +1,103 @@
+{
+ "trajectory": "T0 (linear acceleration = 0)",
+ "post_hoc": true,
+ "intervals": {
+  "uncorrected_95": [
+   5.52944940578029,
+   6.48949138168405
+  ],
+  "bonferroni_family_95": [
+   5.322145394058695,
+   6.725909349108548
+  ]
+ },
+ "rows": [
+  {
+   "arm": "A",
+   "t_s": 60.0,
+   "nees": 5.812645617500416,
+   "in_uncorrected_95": true,
+   "in_bonferroni_95": true
+  },
+  {
+   "arm": "A",
+   "t_s": 300.0,
+   "nees": 5.9454011258550175,
+   "in_uncorrected_95": true,
+   "in_bonferroni_95": true
+  },
+  {
+   "arm": "A",
+   "t_s": 600.0,
+   "nees": 6.116821019281838,
+   "in_uncorrected_95": true,
+   "in_bonferroni_95": true
+  },
+  {
+   "arm": "B",
+   "t_s": 60.0,
+   "nees": 5.88979120417196,
+   "in_uncorrected_95": true,
+   "in_bonferroni_95": true
+  },
+  {
+   "arm": "B",
+   "t_s": 300.0,
+   "nees": 5.623117124099051,
+   "in_uncorrected_95": true,
+   "in_bonferroni_95": true
+  },
+  {
+   "arm": "B",
+   "t_s": 600.0,
+   "nees": 5.810600770796421,
+   "in_uncorrected_95": true,
+   "in_bonferroni_95": true
+  },
+  {
+   "arm": "C",
+   "t_s": 60.0,
+   "nees": 5.836161749252219,
+   "in_uncorrected_95": true,
+   "in_bonferroni_95": true
+  },
+  {
+   "arm": "C",
+   "t_s": 300.0,
+   "nees": 6.339823443228875,
+   "in_uncorrected_95": true,
+   "in_bonferroni_95": true
+  },
+  {
+   "arm": "C",
+   "t_s": 600.0,
+   "nees": 5.849364352865109,
+   "in_uncorrected_95": true,
+   "in_bonferroni_95": true
+  },
+  {
+   "arm": "D",
+   "t_s": 60.0,
+   "nees": 5.90490141429596,
+   "in_uncorrected_95": true,
+   "in_bonferroni_95": true
+  },
+  {
+   "arm": "D",
+   "t_s": 300.0,
+   "nees": 5.691109183307305,
+   "in_uncorrected_95": true,
+   "in_bonferroni_95": true
+  },
+  {
+   "arm": "D",
+   "t_s": 600.0,
+   "nees": 5.76065386656273,
+   "in_uncorrected_95": true,
+   "in_bonferroni_95": true
+  }
+ ],
+ "gate_S3_i_prime_pass_bonferroni": true,
+ "gate_S3_i_prime_pass_uncorrected": true,
+ "S3_prime_overall_pass": true
+}

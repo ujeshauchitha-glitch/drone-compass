@@ -115,7 +115,7 @@ def smoothstep(u):
 class Scenario:
     """Deterministic trajectory of Amendment 2 A2.1, 100 Hz truth, sampled at 10 Hz."""
 
-    def __init__(self):
+    def __init__(self, a_scale=1.0):
         t = np.arange(0.0, T_TOTAL + 1e-9, 0.01)
         n = len(t)
         # roll / pitch
@@ -139,7 +139,7 @@ class Scenario:
         yaw = np.where(fig, yaw[np.searchsorted(t, 300.0)] + (head - head[np.searchsorted(t, 300.0)]), yaw)
         ax = np.where(fig, -A * om**2 * np.sin(om * tau), 0.0)
         ay = np.where(fig, -2 * A * om**2 * np.sin(2 * om * tau), 0.0)
-        a_nav = np.stack([ax, ay, np.zeros(n)], -1)
+        a_nav = a_scale * np.stack([ax, ay, np.zeros(n)], -1)
         R100 = Rz(yaw) @ Ry(pitch) @ Rx(roll)
         yawrate = np.gradient(yaw, 0.01)
         c = np.clip(0.5 + 0.3 * np.sin(2 * np.pi * 0.05 * t) + 0.2 * np.abs(yawrate) / (10 * DEG), 0.0, 1.0)
@@ -186,8 +186,10 @@ class Randoms:
 
 def default_cfg(**kw):
     c = dict(bias_dph=10.0, arw=0.3, sigma_d=0.0, dip=45.0, sigma_mag=0.5, sigma_rp_deg=2.0, kappa=1.0,
-             soft_iron=True, init_yaw_deg=10.0, acc_sigma=float(np.hypot(0.05, 0.3)))
+             soft_iron=True, soft_iron_scale=0.01, init_yaw_deg=10.0, vib_sigma=0.3)
     c.update(kw)
+    if "acc_sigma" not in c:
+        c["acc_sigma"] = float(np.hypot(0.05, c["vib_sigma"]))
     return c
 
 
@@ -225,7 +227,7 @@ def run_filter(arm, cfg, scen, rnd, nees_steps=(), progress=None):
     sig_m2 = cfg["sigma_mag"] ** 2 + sd**2 / 3.0 + si_R**2
     sig_rp = cfg["sigma_rp_deg"] * DEG
     sig_r2 = sig_rp**2 + sd**2 / (3.0 * bnorm**2) + (si_R / bnorm) ** 2
-    S = rnd.soft_iron() if cfg["soft_iron"] else np.broadcast_to(np.eye(3), (M, 3, 3)).copy()
+    S = rnd.soft_iron(cfg.get("soft_iron_scale", 0.01)) if cfg["soft_iron"] else np.broadcast_to(np.eye(3), (M, 3, 3)).copy()
     d_hi = sd / np.sqrt(6.0) * rnd.dhi
     d_mc = sd / np.sqrt(6.0) * rnd.dmc
     kappa = cfg["kappa"]
