@@ -31,6 +31,7 @@ def main():
                                           f"slope {s2['K3generic_EXPLORATORY']['slope']:.3f}"), source="results/stage2_gate.json"),
     ]
     s3 = json.load(open(RES / "stage3_gate.json"))
+    s3a = json.load(open(RES / "stage3_gate_amended.json"))
     pre = [r for r in s3["nees_rows"] if r["condition"].startswith("PRE")]
     diag = [r for r in s3["nees_rows"] if r["condition"].startswith("DIAG")]
     fails = ", ".join(f"arm {a} at {t:g} s: {v:.2f}" for a, t, v in s3["gate_S3_i_failures"])
@@ -44,12 +45,17 @@ def main():
                      f"{sum(r['in_bonferroni_95'] for r in pre)} of {len(pre)} tests inside"), source="results/stage3_gate.json"),
         dict(gate="S3(i) diagnostic (not a gate)", configuration="same, but with the linear acceleration of the figure-eight removed",
              status="DIAGNOSTIC", detail=f"{sum(r['in_bonferroni_95'] for r in diag)} of {len(diag)} tests inside the same interval", source="results/stage3_gate.json"),
+        dict(gate="S3(i)' (amended, POST HOC)", configuration="same 12 tests on trajectory T0 (linear acceleration = 0); outcome was visible in the diagnostic before the amendment",
+             status="PASSED" if s3a["gate_S3_i_prime_pass_bonferroni"] else "FAILED",
+             detail=f"{sum(r['in_bonferroni_95'] for r in s3a['rows'])} of {len(s3a['rows'])} tests inside [{lo:.2f}, {hi:.2f}]; not an independent test", source="results/stage3_gate_amended.json"),
         dict(gate="S3(ii) arm A vs analytic drift", configuration="nine gyro settings, t=60 and 600 s", status="PASSED" if s3["gate_S3_ii_pass"] else "FAILED",
              detail=f"ratio simulated/analytic {ii_lo:.3f} to {ii_hi:.3f} (need within a factor 2)", source="results/stage3_gate.json"),
         dict(gate="S3(iii) independent filter", configuration="rotation matrices, numerical Jacobians, 5 runs x arms A-D", status="PASSED" if s3["gate_S3_iii_pass"] else "FAILED",
              detail=f"max |yaw difference| {iii_max:.2e} rad (need < 1e-6)", source="results/stage3_gate.json"),
-        dict(gate="S3 overall", configuration="conditions (i)-(iii)", status="PASSED" if s3["gate_S3_pass"] else "FAILED",
-             detail="(i) failed; Stage 4 not started", source="results/stage3_gate.json"),
+        dict(gate="S3 overall (pre-registered)", configuration="conditions (i)-(iii)", status="PASSED" if s3["gate_S3_pass"] else "FAILED",
+             detail="(i) failed", source="results/stage3_gate.json"),
+        dict(gate="S3' overall (amended, post hoc)", configuration="(i)' and (ii) and (iii)", status="PASSED" if s3a["S3_prime_overall_pass"] else "FAILED",
+             detail="reported next to, never instead of, S3", source="results/stage3_gate_amended.json"),
     ]
     with open(RES / "gate_table.csv", "w", newline="", encoding="utf8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0].keys())); w.writeheader(); w.writerows(rows)

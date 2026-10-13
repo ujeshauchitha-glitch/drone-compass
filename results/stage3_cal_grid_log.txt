@@ -1,0 +1,16 @@
+297 configurations; estimated runtime ~67 min with 2 workers
+20/297 done, 329s
+40/297 done, 587s
+60/297 done, 873s
+80/297 done, 1124s
+100/297 done, 1342s
+120/297 done, 1603s
+140/297 done, 1905s
+160/297 done, 2206s
+180/297 done, 2492s
+200/297 done, 2835s
+220/297 done, 3174s
+240/297 done, 3429s
+260/297 done, 3754s
+280/297 done, 4022s
+done 4238s

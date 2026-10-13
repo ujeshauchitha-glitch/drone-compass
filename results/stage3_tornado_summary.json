@@ -1,0 +1,404 @@
+{
+ "uncal": {
+  "base_metric": 0.003790134297887793,
+  "base_best_reduction_600": 0.01293672194337772,
+  "ranking": [
+   {
+    "parameter": "sensor-specific disturbance factor kappa",
+    "values": [
+     [
+      "0.5",
+      0.1726,
+      0.1726
+     ]
+    ],
+    "swing": 0.16879755894649576,
+    "min_metric": 0.003790134297887793,
+    "max_metric": 0.17258769324438356,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.17258769324438356
+   },
+   {
+    "parameter": "MEMS noise sigma_mag (uT)",
+    "values": [
+     [
+      "0.1",
+      0.0012,
+      0.0359
+     ],
+     [
+      "2.0",
+      0.0202,
+      0.0553
+     ]
+    ],
+    "swing": 0.019009738355726287,
+    "min_metric": 0.0011774068160440904,
+    "max_metric": 0.020187145171770376,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.055267903287270916
+   },
+   {
+    "parameter": "gyro bias instability (deg/h)",
+    "values": [
+     [
+      "1.0",
+      0.0029,
+      0.0089
+     ],
+     [
+      "100.0",
+      0.0113,
+      0.3809
+     ]
+    ],
+    "swing": 0.008408706883510014,
+    "min_metric": 0.00293748409548622,
+    "max_metric": 0.011346190978996234,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.3808737856269196
+   },
+   {
+    "parameter": "dip angle (deg)",
+    "values": [
+     [
+      "15.0",
+      0.0033,
+      0.0655
+     ],
+     [
+      "66.0",
+      -0.0037,
+      -0.0037
+     ]
+    ],
+    "swing": 0.007478783651609049,
+    "min_metric": -0.0036886493537212554,
+    "max_metric": 0.003790134297887793,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.0655289965844189
+   },
+   {
+    "parameter": "soft-iron std",
+    "values": [
+     [
+      "0.0",
+      0.0026,
+      0.0808
+     ],
+     [
+      "0.02",
+      -0.003,
+      -0.003
+     ]
+    ],
+    "swing": 0.006742764105721077,
+    "min_metric": -0.002952629807833284,
+    "max_metric": 0.003790134297887793,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.08077333712130416
+   },
+   {
+    "parameter": "disturbance sigma_d (uT)",
+    "values": [
+     [
+      "0.0",
+      0.0083,
+      0.0858
+     ],
+     [
+      "10.0",
+      0.0028,
+      0.079
+     ]
+    ],
+    "swing": 0.005485859663305125,
+    "min_metric": 0.002837130958559107,
+    "max_metric": 0.008322990621864233,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.08581920516557805
+   },
+   {
+    "parameter": "accelerometer vibration sigma (m/s^2)",
+    "values": [
+     [
+      "0.1",
+      0.0033,
+      0.0033
+     ],
+     [
+      "1.0",
+      0.0032,
+      0.2674
+     ]
+    ],
+    "swing": 0.000556308072888697,
+    "min_metric": 0.003233826224999096,
+    "max_metric": 0.003790134297887793,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.26740586321878584
+   },
+   {
+    "parameter": "initial yaw sigma (deg)",
+    "values": [
+     [
+      "2.0",
+      0.0043,
+      0.0135
+     ],
+     [
+      "30.0",
+      0.0038,
+      0.0131
+     ]
+    ],
+    "swing": 0.000535949200914035,
+    "min_metric": 0.0037571505825302076,
+    "max_metric": 0.0042930997834442425,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.01349856369384574
+   },
+   {
+    "parameter": "angle random walk (deg/sqrt(h))",
+    "values": [
+     [
+      "0.1",
+      0.0037,
+      0.0061
+     ],
+     [
+      "1.0",
+      0.004,
+      0.3857
+     ]
+    ],
+    "swing": 0.0003011940427329533,
+    "min_metric": 0.0037433897056350575,
+    "max_metric": 0.004044583748368011,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.3857295665088682
+   },
+   {
+    "parameter": "linear-acceleration scale",
+    "values": [
+     [
+      "0.0",
+      0.0038,
+      0.014
+     ],
+     [
+      "2.0",
+      0.0038,
+      0.0111
+     ]
+    ],
+    "swing": 0.0,
+    "min_metric": 0.003790134297887793,
+    "max_metric": 0.003790134297887793,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.013973306263213036
+   }
+  ]
+ },
+ "cal": {
+  "base_metric": -0.09048348218636453,
+  "base_best_reduction_600": 0.098818924099025,
+  "ranking": [
+   {
+    "parameter": "dip angle (deg)",
+    "values": [
+     [
+      "15.0",
+      0.2074,
+      0.2074
+     ],
+     [
+      "66.0",
+      -0.7326,
+      0.0712
+     ]
+    ],
+    "swing": 0.939983033361673,
+    "min_metric": -0.7326130378686299,
+    "max_metric": 0.2073699954930432,
+    "reaches_20pct": true,
+    "best_reduction_600": 0.2073699954930432
+   },
+   {
+    "parameter": "disturbance sigma_d (uT)",
+    "values": [
+     [
+      "0.0",
+      -0.3132,
+      0.1016
+     ],
+     [
+      "10.0",
+      0.0535,
+      0.0949
+     ]
+    ],
+    "swing": 0.3667073464003803,
+    "min_metric": -0.31324208080838617,
+    "max_metric": 0.05346526559199409,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.10158791347964066
+   },
+   {
+    "parameter": "MEMS noise sigma_mag (uT)",
+    "values": [
+     [
+      "0.1",
+      -0.0626,
+      -0.0626
+     ],
+     [
+      "2.0",
+      0.2608,
+      0.4615
+     ]
+    ],
+    "swing": 0.35132514728430225,
+    "min_metric": -0.09048348218636453,
+    "max_metric": 0.2608416650979377,
+    "reaches_20pct": true,
+    "best_reduction_600": 0.46153576124502893
+   },
+   {
+    "parameter": "soft-iron std",
+    "values": [
+     [
+      "0.0",
+      0.0528,
+      0.1014
+     ],
+     [
+      "0.02",
+      -0.1116,
+      0.1007
+     ]
+    ],
+    "swing": 0.1644129081720816,
+    "min_metric": -0.11162994391164786,
+    "max_metric": 0.05278296426043374,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.10140157618866345
+   },
+   {
+    "parameter": "initial yaw sigma (deg)",
+    "values": [
+     [
+      "2.0",
+      0.0025,
+      0.0992
+     ],
+     [
+      "30.0",
+      -0.0914,
+      -0.0914
+     ]
+    ],
+    "swing": 0.09390731560282797,
+    "min_metric": -0.09144045506480958,
+    "max_metric": 0.002466860538018399,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.0992000221587023
+   },
+   {
+    "parameter": "sensor-specific disturbance factor kappa",
+    "values": [
+     [
+      "0.5",
+      -0.0729,
+      0.0993
+     ]
+    ],
+    "swing": 0.01758079379491867,
+    "min_metric": -0.09048348218636453,
+    "max_metric": -0.07290268839144586,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.09934174090204888
+   },
+   {
+    "parameter": "angle random walk (deg/sqrt(h))",
+    "values": [
+     [
+      "0.1",
+      -0.093,
+      0.168
+     ],
+     [
+      "1.0",
+      -0.0835,
+      0.0837
+     ]
+    ],
+    "swing": 0.009485066821607616,
+    "min_metric": -0.09299130798819273,
+    "max_metric": -0.08350624116658512,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.16801179805923708
+   },
+   {
+    "parameter": "accelerometer vibration sigma (m/s^2)",
+    "values": [
+     [
+      "0.1",
+      -0.0953,
+      0.1121
+     ],
+     [
+      "1.0",
+      -0.0941,
+      0.0426
+     ]
+    ],
+    "swing": 0.004861976160813686,
+    "min_metric": -0.09534545834717821,
+    "max_metric": -0.09048348218636453,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.11207710534632961
+   },
+   {
+    "parameter": "gyro bias instability (deg/h)",
+    "values": [
+     [
+      "1.0",
+      -0.0862,
+      0.0689
+     ],
+     [
+      "100.0",
+      -0.0877,
+      0.1711
+     ]
+    ],
+    "swing": 0.004329412132872051,
+    "min_metric": -0.09048348218636453,
+    "max_metric": -0.08615407005349247,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.17105870198122805
+   },
+   {
+    "parameter": "linear-acceleration scale",
+    "values": [
+     [
+      "0.0",
+      -0.0905,
+      0.0882
+     ],
+     [
+      "2.0",
+      -0.0905,
+      0.1054
+     ]
+    ],
+    "swing": 0.0,
+    "min_metric": -0.09048348218636453,
+    "max_metric": -0.09048348218636453,
+    "reaches_20pct": false,
+    "best_reduction_600": 0.10536700932788103
+   }
+  ]
+ }
+}

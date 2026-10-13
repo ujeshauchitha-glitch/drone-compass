@@ -37,6 +37,13 @@ python experiments/stage3_grid.py          # Stage 3 main grid (about 36 min, 2 
 python experiments/stage3_analysis.py      # decision statistics, break-even, kappa
 python experiments/stage3_observability.py; python experiments/stage3_exploratory_snapshot.py
 python experiments/stage3_exploratory_tuned.py  # exploratory E1/E2 (about 10 min, 2 workers)
+python experiments/stage3_gate_amended.py   # Gate S3(i)' (post hoc, labelled)
+python experiments/stage3_cal_grid.py       # calibrated decision study (about 71 min, 2 workers)
+python experiments/stage3_cal_analysis.py
+python experiments/stage3_tornado.py        # Stage 4 sensitivity (about 27 min, 2 workers)
+python experiments/stage3_tornado_analysis.py
+python experiments/stage3_grid.py kappa_EXPLORATORY; python experiments/stage3_kappa_analysis.py
+python experiments/make_abstract.py; python experiments/make_report.py   # abstract_draft.md, report.pdf
 python experiments/make_gate_table.py; python experiments/make_stage2_figures.py; python experiments/make_interim_abstract.py
 ```
 
@@ -44,6 +51,9 @@ All randomness is seeded from `SeedSequence(20261013)`; runs reproduce exactly. 
 
 ## Status
 
-Stages 0-3 done. Gate S1 passed; Gate S2 (K3orth) FAILED; Gate S2' (amended) passed; Gate S3 FAILED on condition (i) (NEES), (ii) and (iii) passed.
-Pre-registered decision question (Stage 3): NO - 0 of 390 configurations reduce yaw RMSE by >= 20% at both 60 s and 600 s relative to a MEMS magnetometer.
-See `results/gate_table.md` and `CHANGELOG.md`. **Stage 4 (write-up) has not been started.**
+Stages 0-4 done. **Gates:** S1 passed; S2 (K3orth) FAILED; S2' (amended) passed; S3(i) FAILED, S3(ii) and S3(iii) passed; S3(i)' passed (post hoc, labelled). See `results/gate_table.md`.
+
+**Answer to the pre-registered question: NO** (0 of 390 configurations reduce yaw RMSE by at least 20% at both 60 s and 600 s relative to an uncalibrated MEMS magnetometer; that filter was inconsistent).
+**With online calibration (Amendment 3, specified after the NO): 12 of 270** configurations meet the criterion, 11 of them where the MEMS magnetometer is noisy (2 uT) or the dip is 15 deg and the radical-pair sensor reaches 0.3 deg per axis; none at the base setting (0.5 uT, 45 deg).
+
+Deliverables: `report.pdf`, `abstract_draft.md`, `paper_outline.md`, `REVIEW.md`, `PLAN.md` (with Amendments 1-3), `CHANGELOG.md`, `PRIOR_ART.md`, `open_questions.md`, `results/`.

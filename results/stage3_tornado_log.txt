@@ -1,0 +1,14 @@
+20 points, 240 filter runs; estimated ~30 min with 2 workers
+20/240 done, 136s
+40/240 done, 275s
+60/240 done, 433s
+80/240 done, 560s
+100/240 done, 699s
+120/240 done, 862s
+140/240 done, 992s
+160/240 done, 1137s
+180/240 done, 1260s
+200/240 done, 1360s
+220/240 done, 1473s
+240/240 done, 1598s
+done 1598s
