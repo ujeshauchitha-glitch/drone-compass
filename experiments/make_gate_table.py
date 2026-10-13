@@ -30,6 +30,27 @@ def main():
              status="DIAGNOSTIC", detail=(f"ratios {', '.join(f'{r:.3f}' for r in s2['K3generic_EXPLORATORY']['large_N_ratios'])}; "
                                           f"slope {s2['K3generic_EXPLORATORY']['slope']:.3f}"), source="results/stage2_gate.json"),
     ]
+    s3 = json.load(open(RES / "stage3_gate.json"))
+    pre = [r for r in s3["nees_rows"] if r["condition"].startswith("PRE")]
+    diag = [r for r in s3["nees_rows"] if r["condition"].startswith("DIAG")]
+    fails = ", ".join(f"arm {a} at {t:g} s: {v:.2f}" for a, t, v in s3["gate_S3_i_failures"])
+    iii_max = max(x["max_abs_diff_rad"] for x in s3["gate_S3_iii_rows"])
+    ii_lo = min(x["ratio"] for x in s3["gate_S3_ii_rows"]); ii_hi = max(x["ratio"] for x in s3["gate_S3_ii_rows"])
+    lo, hi = s3["nees_intervals"]["bonferroni_family_95"]
+    rows += [
+        dict(gate="S3(i) NEES (pre-registered)", configuration="nominal, mid gyro, arms A, B, C and D at sigma_rp=2 deg, t=60/300/600 s",
+             status="PASSED" if s3["gate_S3_i_pass_bonferroni"] else "FAILED",
+             detail=(f"outside the family-wise 95% interval [{lo:.2f}, {hi:.2f}]: {fails if fails else 'none'}; "
+                     f"{sum(r['in_bonferroni_95'] for r in pre)} of {len(pre)} tests inside"), source="results/stage3_gate.json"),
+        dict(gate="S3(i) diagnostic (not a gate)", configuration="same, but with the linear acceleration of the figure-eight removed",
+             status="DIAGNOSTIC", detail=f"{sum(r['in_bonferroni_95'] for r in diag)} of {len(diag)} tests inside the same interval", source="results/stage3_gate.json"),
+        dict(gate="S3(ii) arm A vs analytic drift", configuration="nine gyro settings, t=60 and 600 s", status="PASSED" if s3["gate_S3_ii_pass"] else "FAILED",
+             detail=f"ratio simulated/analytic {ii_lo:.3f} to {ii_hi:.3f} (need within a factor 2)", source="results/stage3_gate.json"),
+        dict(gate="S3(iii) independent filter", configuration="rotation matrices, numerical Jacobians, 5 runs x arms A-D", status="PASSED" if s3["gate_S3_iii_pass"] else "FAILED",
+             detail=f"max |yaw difference| {iii_max:.2e} rad (need < 1e-6)", source="results/stage3_gate.json"),
+        dict(gate="S3 overall", configuration="conditions (i)-(iii)", status="PASSED" if s3["gate_S3_pass"] else "FAILED",
+             detail="(i) failed; Stage 4 not started", source="results/stage3_gate.json"),
+    ]
     with open(RES / "gate_table.csv", "w", newline="", encoding="utf8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0].keys())); w.writeheader(); w.writerows(rows)
     with open(RES / "gate_table.md", "w", encoding="utf8") as fh:

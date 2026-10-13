@@ -32,6 +32,11 @@ python experiments/stage2_noncollinear.py # non-collinear tensor test (about 16 
 python experiments/stage2_requirements.py # requirements table
 python experiments/stage2_failure_threshold.py  # exploratory MC failure-threshold curve (about 14 min)
 python experiments/stage2_ren_investigation.py  # CRB-only, seconds
+python experiments/stage3_gate.py          # Gate S3 (about 13 min)
+python experiments/stage3_grid.py          # Stage 3 main grid (about 36 min, 2 workers)
+python experiments/stage3_analysis.py      # decision statistics, break-even, kappa
+python experiments/stage3_observability.py; python experiments/stage3_exploratory_snapshot.py
+python experiments/stage3_exploratory_tuned.py  # exploratory E1/E2 (about 10 min, 2 workers)
 python experiments/make_gate_table.py; python experiments/make_stage2_figures.py; python experiments/make_interim_abstract.py
 ```
 
@@ -39,5 +44,6 @@ All randomness is seeded from `SeedSequence(20261013)`; runs reproduce exactly. 
 
 ## Status
 
-Stages 0-2 done. Gate S1 passed; Gate S2 (K3orth, pre-registered) FAILED; Gate S2' (amended, selected set, fresh data) passed.
-See `results/gate_table.md` and `CHANGELOG.md`. **Stage 3 (navigation) has not been run.**
+Stages 0-3 done. Gate S1 passed; Gate S2 (K3orth) FAILED; Gate S2' (amended) passed; Gate S3 FAILED on condition (i) (NEES), (ii) and (iii) passed.
+Pre-registered decision question (Stage 3): NO - 0 of 390 configurations reduce yaw RMSE by >= 20% at both 60 s and 600 s relative to a MEMS magnetometer.
+See `results/gate_table.md` and `CHANGELOG.md`. **Stage 4 (write-up) has not been started.**

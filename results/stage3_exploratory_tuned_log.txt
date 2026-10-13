@@ -1,0 +1,4 @@
+132 configurations (~11 min with 2 workers)
+E1_tuned_R criterion met: 0 of 90
+E2_no_soft_iron criterion met: 0 of 30
+done 608s
