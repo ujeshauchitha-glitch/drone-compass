@@ -76,3 +76,55 @@ def _ref_grid():
         from model.sphere import fibonacci_sphere
         _REF = fibonacci_sphere(3000)
     return _REF
+
+
+# ---------------------------------------------------------------------- Amendment 1.1: refined objective J_ref
+def _pair_rows(s, rows, mask, N):
+    sa = s[rows][:, None, :]
+    d = 0.5 * N * ((sa - s[None]) * np.log(sa / s[None])).sum(-1)
+    return np.where(mask[rows], d, np.inf)
+
+
+def refined_jref(phi, phibar, rots, grid, mask=None, N=N_DESIGN, n_worst=40, n_cand=3, x_deg=X_DEG):
+    """Stage B objective of Amendment 1.1: continuous minimisation of D(n, n') over n' for the worst design directions."""
+    from scipy.optimize import minimize
+    from sensor.poisson import tangent_basis
+
+    if mask is None:
+        mask = separation_mask(grid, x_deg)
+    s = s_matrix(phi, phibar, rots, grid)
+    if np.any(s <= 0):
+        return 0.0
+    row_min = np.empty(len(grid))
+    for a in range(0, len(grid), 400):
+        rows = np.arange(a, min(a + 400, len(grid)))
+        row_min[rows] = _pair_rows(s, rows, mask, N).min(1)
+    worst = np.argsort(row_min)[:n_worst]
+    D = _pair_rows(s, worst, mask, N)
+    xr = np.deg2rad(x_deg)
+
+    def s_point(v):
+        return np.array([1.0 + (phi((v @ R)[None])[0] - phibar) / phibar for R in rots])
+
+    best = np.inf
+    for k, i in enumerate(worst):
+        n = grid[i]
+        sn = s[i]
+        e1, e2 = tangent_basis(n[None])
+        e1, e2 = e1[0], e2[0]
+
+        def f(x):
+            psi, chi = x
+            v = np.cos(psi) * n + np.sin(psi) * (np.cos(chi) * e1 + np.sin(chi) * e2)
+            sv = s_point(v)
+            if np.any(sv <= 0):
+                return 1e30
+            return float(0.5 * N * ((sn - sv) * np.log(sn / sv)).sum())
+
+        for c in np.argsort(D[k])[:n_cand]:
+            v = grid[c] if grid[c] @ n >= 0 else -grid[c]
+            psi0 = float(np.arccos(np.clip(v @ n, -1, 1)))
+            chi0 = float(np.arctan2(v @ e2, v @ e1))
+            r = minimize(f, [max(psi0, xr), chi0], method="L-BFGS-B", bounds=[(xr, np.pi / 2), (None, None)])
+            best = min(best, r.fun, f([max(psi0, xr), chi0]))
+    return float(best)

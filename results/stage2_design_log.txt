@@ -1,0 +1,5 @@
+K 3 grid J per restart [6507.247 7421.19  6884.473] Jref per restart [3.998 4.788 1.42 ] selected 1 Jref_confirm 2.2585140446257337
+K 2 grid J per restart [143.288 124.895 109.789] Jref per restart [0. 0. 0.] selected 1 Jref_confirm 2.978421489803465e-13
+K 4 grid J per restart [105338.099 107096.158 108498.911] Jref per restart [71318.326 79272.466 72916.671] selected 1 Jref_confirm 78853.94102803143
+reference (grid J, Jref design, Jref confirm) {'K3orth': (114.423, 0.0, 0.0), 'K3generic_EXPLORATORY': (278.122, 0.1888, 0.0329), 'K3selected': (7421.19, 4.7879, 2.2585)}
+runtime 838.8971014022827
