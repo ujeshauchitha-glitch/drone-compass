@@ -289,9 +289,12 @@ def run_filter(arm, cfg, scen, rnd, nees_steps=(), progress=None):
         Rh = q_to_R(q)
         # ---- total body-frame field (shared by both magnetic sensors)
         v_body = Rt.T @ be                                   # (3,)
-        b_body = np.einsum("mij,j->mi", S, v_body) + kappa * (d_hi + scen.c[k + 1] * d_mc)
+        sv = np.einsum("mij,j->mi", S, v_body)
+        dist = d_hi + scen.c[k + 1] * d_mc
+        b_mems = sv + dist                                   # the MEMS magnetometer always sees the full disturbance
+        b_body = sv + kappa * dist                           # the radical-pair sensor sees kappa x disturbance (kappa = 1 by default)
         if use_mag:
-            zm = b_body + cfg["sigma_mag"] * rnd.mag[:, k]
+            zm = b_mems + cfg["sigma_mag"] * rnd.mag[:, k]
             predm = np.einsum("mji,j->mi", Rh, be)
             Hth = np.swapaxes(Rh, 1, 2) @ skew_be
             q, bhat, P = update(zm - predm, Hth, sig_m2, q, bhat, P)

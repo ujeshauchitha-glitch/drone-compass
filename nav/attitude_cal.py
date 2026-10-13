@@ -125,9 +125,12 @@ def run_filter_cal(arm, cfg, scen, rnd, nees_steps=(), prior_scale=1.0, force_fl
         Rh = q_to_R(q)
         # truth field
         v_body = Rt.T @ be
-        b_body = np.einsum("mij,j->mi", S, v_body) + kappa * (d_hi + c * d_mc)
+        sv = np.einsum("mij,j->mi", S, v_body)
+        dist = d_hi + c * d_mc
+        b_mems = sv + dist
+        b_body = sv + kappa * dist
         if use_mag:
-            zm = b_body + cfg["sigma_mag"] * rnd.mag[:, k]
+            zm = b_mems + cfg["sigma_mag"] * rnd.mag[:, k]
             mh, v = field_model(Rh, be, ehat, hhat, dhat, c)
             H = h_field(Rh, be, ehat, v, c)
             q, bhat, hhat, ehat, dhat, P = update(zm - mh, H, sig_m2, q, bhat, hhat, ehat, dhat, P)

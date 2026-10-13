@@ -87,9 +87,12 @@ def ref_run(arm, cfg, scen, rnd, r, n_steps=N_STEP):
         # accelerometer
         za = scen.fb[k + 1] + sig_a * rnd.acc[r, k]
         Rh, bh, P = update(za - Rh.T @ gz, lambda d, Rh=Rh: (E(d) @ Rh).T @ gz, sig_a**2, Rh, bh, P)
-        b_body = Smat @ (Rt.T @ be) + cfg["kappa"] * (d_hi + scen.c[k + 1] * d_mc)
+        sv = Smat @ (Rt.T @ be)
+        dist = d_hi + scen.c[k + 1] * d_mc
+        b_mems = sv + dist
+        b_body = sv + cfg["kappa"] * dist
         if use_mag:
-            zm = b_body + cfg["sigma_mag"] * rnd.mag[r, k]
+            zm = b_mems + cfg["sigma_mag"] * rnd.mag[r, k]
             Rh, bh, P = update(zm - Rh.T @ be, lambda d, Rh=Rh: (E(d) @ Rh).T @ be, sig_m2, Rh, bh, P)
         if use_rp:
             ut = b_body / np.linalg.norm(b_body)
