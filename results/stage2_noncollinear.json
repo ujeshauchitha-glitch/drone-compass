@@ -1,0 +1,128 @@
+[
+ {
+  "model": "NC",
+  "alpha_deg": 0,
+  "sym_violation": 2.4424906541753444e-15,
+  "Dmin_nats_at_1e8": 0.0,
+  "Dmin_per_flip": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "N_mirror_photons": Infinity,
+  "ambiguity_survives": true,
+  "aniso": 0.20573079884906753
+ },
+ {
+  "model": "NC",
+  "alpha_deg": 5,
+  "sym_violation": 0.006588818112625627,
+  "Dmin_nats_at_1e8": 215.2672048330926,
+  "Dmin_per_flip": [
+   215.267205,
+   267.663284,
+   322.745394
+  ],
+  "N_mirror_photons": 4645389.439489168,
+  "ambiguity_survives": false,
+  "aniso": 0.205308660769275
+ },
+ {
+  "model": "NC",
+  "alpha_deg": 15,
+  "sym_violation": 0.019234024441818154,
+  "Dmin_nats_at_1e8": 1981.8641145069644,
+  "Dmin_per_flip": [
+   1981.864115,
+   2576.133539,
+   3106.611964
+  ],
+  "N_mirror_photons": 504575.46139522974,
+  "ambiguity_survives": false,
+  "aniso": 0.20271588096825444
+ },
+ {
+  "model": "NC",
+  "alpha_deg": 30,
+  "sym_violation": 0.03453707170015202,
+  "Dmin_nats_at_1e8": 8342.920190646537,
+  "Dmin_per_flip": [
+   8342.920191,
+   11196.639454,
+   13569.413018
+  ],
+  "N_mirror_photons": 119862.10788892908,
+  "ambiguity_survives": false,
+  "aniso": 0.19421329556625488
+ },
+ {
+  "model": "NC",
+  "alpha_deg": 60,
+  "sym_violation": 0.05605408683830854,
+  "Dmin_nats_at_1e8": 28667.049449045553,
+  "Dmin_per_flip": [
+   28667.049449,
+   37322.435672,
+   41073.191469
+  ],
+  "N_mirror_photons": 34883.25513853307,
+  "ambiguity_survives": false,
+  "aniso": 0.1672302969125124
+ },
+ {
+  "model": "NC-R2",
+  "alpha_deg": 0,
+  "sym_violation": 3.164135620181696e-15,
+  "Dmin_nats_at_1e8": 0.0,
+  "Dmin_per_flip": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "N_mirror_photons": Infinity,
+  "ambiguity_survives": true,
+  "aniso": 0.009945446618526033
+ },
+ {
+  "model": "NC-R2",
+  "alpha_deg": 15,
+  "sym_violation": 0.0037552709726224043,
+  "Dmin_nats_at_1e8": 5.86255406049952,
+  "Dmin_per_flip": [
+   5.862554,
+   11.232054,
+   39.078059
+  ],
+  "N_mirror_photons": 170574120.0303396,
+  "ambiguity_survives": true,
+  "aniso": 0.008123262744549109
+ },
+ {
+  "model": "NC-R2",
+  "alpha_deg": 30,
+  "sym_violation": 0.005002411051042155,
+  "Dmin_nats_at_1e8": 74.49110528904527,
+  "Dmin_per_flip": [
+   74.491105,
+   154.025998,
+   209.014765
+  ],
+  "N_mirror_photons": 13424421.561738607,
+  "ambiguity_survives": false,
+  "aniso": 0.00798669119583445
+ },
+ {
+  "model": "NC-R2",
+  "alpha_deg": 60,
+  "sym_violation": 0.001668742310697413,
+  "Dmin_nats_at_1e8": 11.73702183774646,
+  "Dmin_per_flip": [
+   11.737022,
+   22.642978,
+   22.674818
+  ],
+  "N_mirror_photons": 85200489.00173153,
+  "ambiguity_survives": false,
+  "aniso": 0.0032958654009900834
+ }
+]

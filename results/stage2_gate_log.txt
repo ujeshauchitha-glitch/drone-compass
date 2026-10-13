@@ -1,0 +1,2 @@
+K3orth gate1 False ratios [14478.151 25621.192 51653.192] slope -0.012580706535789426 gate2 False 57s
+K3generic_EXPLORATORY gate1 True ratios [0.928 0.892 0.872] slope -0.4880077480756435 gate2 True 121s

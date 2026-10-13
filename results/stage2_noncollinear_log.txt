@@ -1,0 +1,9 @@
+NC 0 viol=2.44e-15 Dmin=0 N_mirror=inf survives=True aniso=0.2057 5s
+NC 5 viol=6.59e-03 Dmin=215 N_mirror=4.65e+06 survives=False aniso=0.2053 9s
+NC 15 viol=1.92e-02 Dmin=1.98e+03 N_mirror=5.05e+05 survives=False aniso=0.2027 14s
+NC 30 viol=3.45e-02 Dmin=8.34e+03 N_mirror=1.2e+05 survives=False aniso=0.1942 18s
+NC 60 viol=5.61e-02 Dmin=2.87e+04 N_mirror=3.49e+04 survives=False aniso=0.1672 23s
+NC-R2 0 viol=3.16e-15 Dmin=0 N_mirror=inf survives=True aniso=0.0099 259s
+NC-R2 15 viol=3.76e-03 Dmin=5.86 N_mirror=1.71e+08 survives=True aniso=0.0081 487s
+NC-R2 30 viol=5.00e-03 Dmin=74.5 N_mirror=1.34e+07 survives=False aniso=0.0080 714s
+NC-R2 60 viol=1.67e-03 Dmin=11.7 N_mirror=8.52e+07 survives=False aniso=0.0033 952s

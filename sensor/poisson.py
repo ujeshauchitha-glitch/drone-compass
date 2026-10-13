@@ -150,11 +150,20 @@ class Sensor:
         self._G, self._Gs = G, self.s(d)
         return G
 
-    def mle(self, c, N, n_refine=1, iters=25):
+    def mle(self, c, N, n_refine=4, iters=25, sep_deg=8.0):
+        """Grid search, then Fisher-scoring refinement of up to n_refine grid candidates that are > sep_deg apart.
+
+        (CHANGELOG 2026-10-13: the first version refined only the single best grid point, which at very large N can
+        sit in the wrong basin because the likelihood peak is far narrower than the grid spacing.)"""
         if not hasattr(self, "_G"):
             self.make_grid()
         ll = self._loglik(c, N * self._Gs, N)
-        best = np.argsort(-ll)[:n_refine]
+        best, cos_sep = [], np.cos(np.deg2rad(sep_deg))
+        for b in np.argsort(-ll)[:400]:
+            if all(abs(self._G[b] @ self._G[a]) < cos_sep for a in best):
+                best.append(b)
+            if len(best) == n_refine:
+                break
         out_n, out_ll = None, -np.inf
         for b in best:
             n = self._G[b].copy()

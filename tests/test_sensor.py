@@ -106,3 +106,15 @@ def test_ren_phi_symmetry_and_value():
     y = r(v)
     assert abs(y[0] - y[1]) < 1e-12
     assert abs(y[2] - (0.5 - 0.00127)) < 1e-12
+
+
+def test_mle_no_wrong_basin_at_large_N(setup):
+    """Regression for the single-start refinement bug (CHANGELOG): at N = 1e10 no trial may land in a wrong basin."""
+    from experiments.stage2_gate import ELEMENT_SETS as ES
+    m, f, s = setup
+    sensor = Sensor(s, ES["K3generic_EXPLORATORY"], eps=1.0)
+    sensor.make_grid(4000)
+    rng = np.random.default_rng(10)
+    N = 1e10
+    errs = [axis_error_deg(sensor.mle(sensor.simulate(n, N, rng), N), n) for n in hemisphere_directions(80, rng)]
+    assert max(errs) < 1.0

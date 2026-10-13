@@ -1,0 +1,189 @@
+{
+ "gate_S2prime": {
+  "set": "K3selected",
+  "eps": 1.0,
+  "rows": [
+   {
+    "N": 100000.0,
+    "mc_median": 0.6687610233801824,
+    "mc_mean": 1.2339279519406854,
+    "mc_p90": 1.5422945306588756,
+    "crb_median_of_sigmed": 0.657717102957081,
+    "ratio": 1.0167912927510143,
+    "frac_err_gt_10deg": 0.02,
+    "n_singular": 0
+   },
+   {
+    "N": 316227.7660168379,
+    "mc_median": 0.37598079728851097,
+    "mc_mean": 0.9761035177560783,
+    "mc_p90": 0.9448670793293886,
+    "crb_median_of_sigmed": 0.3698615072772422,
+    "ratio": 1.016544814453162,
+    "frac_err_gt_10deg": 0.013333333333333334,
+    "n_singular": 0
+   },
+   {
+    "N": 1000000.0,
+    "mc_median": 0.19860786286245768,
+    "mc_mean": 0.3736866496718128,
+    "mc_p90": 0.5689158774844245,
+    "crb_median_of_sigmed": 0.2079884101391843,
+    "ratio": 0.95489870194955,
+    "frac_err_gt_10deg": 0.0033333333333333335,
+    "n_singular": 0
+   },
+   {
+    "N": 3162277.6601683795,
+    "mc_median": 0.1110231640923092,
+    "mc_mean": 0.14473396038565284,
+    "mc_p90": 0.26942304685591395,
+    "crb_median_of_sigmed": 0.11696047818190275,
+    "ratio": 0.949236578185329,
+    "frac_err_gt_10deg": 0.0,
+    "n_singular": 0
+   },
+   {
+    "N": 10000000.0,
+    "mc_median": 0.06425180011164285,
+    "mc_mean": 0.17561508622588085,
+    "mc_p90": 0.15949473126571184,
+    "crb_median_of_sigmed": 0.06577171029570811,
+    "ratio": 0.9768911257251517,
+    "frac_err_gt_10deg": 0.0033333333333333335,
+    "n_singular": 0
+   },
+   {
+    "N": 31622776.60168379,
+    "mc_median": 0.035315465011956725,
+    "mc_mean": 0.13988292167412136,
+    "mc_p90": 0.0926241517181404,
+    "crb_median_of_sigmed": 0.036986150727724224,
+    "ratio": 0.9548294244495364,
+    "frac_err_gt_10deg": 0.0033333333333333335,
+    "n_singular": 0
+   },
+   {
+    "N": 100000000.0,
+    "mc_median": 0.019471479201884932,
+    "mc_mean": 0.026295029303627364,
+    "mc_p90": 0.04804488462518684,
+    "crb_median_of_sigmed": 0.020798841013918427,
+    "ratio": 0.9361809722404612,
+    "frac_err_gt_10deg": 0.0,
+    "n_singular": 0
+   },
+   {
+    "N": 316227766.01683795,
+    "mc_median": 0.0102367240400881,
+    "mc_mean": 0.013540869061832505,
+    "mc_p90": 0.025141876010104043,
+    "crb_median_of_sigmed": 0.011696047818190274,
+    "ratio": 0.8752293252569846,
+    "frac_err_gt_10deg": 0.0,
+    "n_singular": 0
+   },
+   {
+    "N": 1000000000.0,
+    "mc_median": 0.005996080659593459,
+    "mc_mean": 0.008546081784319596,
+    "mc_p90": 0.016012455953179034,
+    "crb_median_of_sigmed": 0.006577171029570809,
+    "ratio": 0.9116504090642038,
+    "frac_err_gt_10deg": 0.0,
+    "n_singular": 0
+   },
+   {
+    "N": 3162277660.1683793,
+    "mc_median": 0.003245305961565845,
+    "mc_mean": 0.004524855253308775,
+    "mc_p90": 0.009068241900215619,
+    "crb_median_of_sigmed": 0.0036986150727724215,
+    "ratio": 0.8774381485265556,
+    "frac_err_gt_10deg": 0.0,
+    "n_singular": 0
+   },
+   {
+    "N": 10000000000.0,
+    "mc_median": 0.0020191103084790715,
+    "mc_mean": 0.0026346791776849163,
+    "mc_p90": 0.004761939927133009,
+    "crb_median_of_sigmed": 0.002079884101391843,
+    "ratio": 0.9707802021891017,
+    "frac_err_gt_10deg": 0.0,
+    "n_singular": 0
+   },
+   {
+    "N": 31622776601.683792,
+    "mc_median": 0.0010931485317768408,
+    "mc_mean": 0.0014615985023360087,
+    "mc_p90": 0.0029728818215660146,
+    "crb_median_of_sigmed": 0.0011696047818190276,
+    "ratio": 0.9346306964278325,
+    "frac_err_gt_10deg": 0.0,
+    "n_singular": 0
+   },
+   {
+    "N": 100000000000.0,
+    "mc_median": 0.0006161811579937506,
+    "mc_mean": 0.0008352278517886239,
+    "mc_p90": 0.0015435394682243317,
+    "crb_median_of_sigmed": 0.0006577171029570811,
+    "ratio": 0.9368483124787453,
+    "frac_err_gt_10deg": 0.0,
+    "n_singular": 0
+   }
+  ],
+  "large_N": [
+   10000000000.0,
+   31622776601.683792,
+   100000000000.0
+  ],
+  "large_N_ratios": [
+   0.9707802021891017,
+   0.9346306964278325,
+   0.9368483124787453
+  ],
+  "cond1_pass": true,
+  "slope": -0.5233482572980708,
+  "slope_points": 4,
+  "cond2_pass": true
+ },
+ "failure_rates_file": "results/stage2_failure_rates.csv",
+ "ren_comparison": {
+  "default_a0.5_b0.00127_c26": {
+   "sigma_med_deg_at_1e8_median_over_directions": 3.024022092809151,
+   "sigma_med_deg_at_1e8_worst": 277.7472110098736,
+   "N_per_element_for_5deg_median": 36578838.47119135,
+   "N_total_K3_median": 109736515.41357404,
+   "N_per_element_worst": 308574052895.0529,
+   "N_total_K3_worst": 925722158685.1587,
+   "ren_reported": {
+    "O1": 229000000.0,
+    "O2_text": 52600000.0
+   },
+   "singular_directions": 0
+  },
+  "optimised_a0.9_b0.00508_c10": {
+   "sigma_med_deg_at_1e8_median_over_directions": 5.182838926607211,
+   "sigma_med_deg_at_1e8_worst": 453704.8553587961,
+   "N_per_element_for_5deg_median": 107447277.35661994,
+   "N_total_K3_median": 322341832.0698598,
+   "N_per_element_worst": 8.233923831045842e+17,
+   "N_total_K3_worst": 2.4701771493137526e+18,
+   "ren_reported": {
+    "O2_table2": 394000.0
+   },
+   "singular_directions": 2
+  }
+ },
+ "ren_differences": [
+  "Ren: information-theoretic lower bound on RMS head-direction error (data processing inequality); ours: Cramer-Rao bound on a 2-D field axis (median-error form).",
+  "Ren: r receptor groups on a hemispherical retina with receptor orientations O1/O2, head rotation in the horizontal plane (1-D unknown); ours: K=3 elements, unknown 2-D axis.",
+  "Ren: uniform prior on head direction and optimal decoder; ours: local frequentist bound, per direction.",
+  "Ren: noise variance Phi(1-Phi)/p per group; ours: Poisson counts with relative-contrast ratio eps.",
+  "Ren: N = r*p total absorbed photons over all groups; ours: N per element, total = 3N.",
+  "Signal model in this row is Ren's phenomenological Gaussian dip (exactly axial); ours elsewhere is the spin-model yield."
+ ],
+ "runtime_s": 412.3791744709015
+}

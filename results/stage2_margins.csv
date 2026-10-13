@@ -1,0 +1,23 @@
+model,aniso,source,margin_vs_1e-3,above_threshold
+minimal H16 (primary),0.20573079884906786,stage1_conditions.csv,205.73079884906787,True
+R1 a_iso_B=0.0 d_B=0.1,0.09773123697673802,stage1_robustness.csv,97.73123697673802,True
+R1 a_iso_B=0.0 d_B=0.5,0.02357622210739968,stage1_robustness.csv,23.57622210739968,True
+R1 a_iso_B=0.5 d_B=0.1,0.03952120381595753,stage1_robustness.csv,39.52120381595753,True
+R1 a_iso_B=0.5 d_B=0.5,0.027294729541927076,stage1_robustness.csv,27.294729541927076,True
+R1 a_iso_B=1.5 d_B=0.1,0.04493427038255493,stage1_robustness.csv,44.93427038255493,True
+R1 a_iso_B=1.5 d_B=0.5,0.013108487486211184,stage1_robustness.csv,13.108487486211184,True
+R2,0.009945446618526033,stage1_robustness.csv,9.945446618526033,True
+R3 (EXPLORATORY),0.010942547786923662,stage1_robustness.csv,10.942547786923662,True
+EXPLORATORY exchange J_mT=0.0,0.20573079884906786,stage1_robustness.csv,205.73079884906787,True
+EXPLORATORY exchange J_mT=0.05,0.10811115782833147,stage1_robustness.csv,108.11115782833147,True
+EXPLORATORY exchange J_mT=-0.05,0.1065099807714378,stage1_robustness.csv,106.50998077143781,True
+EXPLORATORY exchange J_mT=0.5,0.0012697041587677038,stage1_robustness.csv,1.2697041587677038,True
+EXPLORATORY exchange J_mT=-0.5,0.017534204370388995,stage1_robustness.csv,17.534204370388995,True
+EXPLORATORY dipolar D_mT=0.1,0.042488991727665126,stage1_robustness.csv,42.48899172766512,True
+EXPLORATORY dipolar D_mT=0.3,0.010789257632432547,stage1_robustness.csv,10.789257632432546,True
+EXPLORATORY exchange+dipolar J_mT=0.05 D_mT=0.3,0.015749856612204738,stage1_robustness.csv,15.749856612204738,True
+EXPLORATORY exchange+dipolar J_mT=-0.5 D_mT=0.3,0.012501755689204863,stage1_robustness.csv,12.501755689204863,True
+EXPLORATORY relaxation (meridian scan) relax_rate=0.0,0.20573079740325467,stage1_robustness.csv,205.73079740325466,True
+EXPLORATORY relaxation (meridian scan) relax_rate=100000.0,0.1707287528883284,stage1_robustness.csv,170.7287528883284,True
+EXPLORATORY relaxation (meridian scan) relax_rate=1000000.0,0.06257953090640944,stage1_robustness.csv,62.57953090640944,True
+EXPLORATORY relaxation (meridian scan) relax_rate=10000000.0,0.0014903617918448075,stage1_robustness.csv,1.4903617918448075,True
