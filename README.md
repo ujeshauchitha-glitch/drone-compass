@@ -25,7 +25,19 @@ MEMS magnetometer?** A "no, never" answer is a valid outcome.
 pip install numpy scipy matplotlib reportlab pytest
 python -m pytest -q                 # unit tests
 python experiments/stage1.py        # Stage 1 (about 8 minutes, one process)
-python experiments/stage2_gate.py   # Stage 2 gate
+python experiments/stage2_gate.py        # Gate S2 (K3orth, pre-registered) + labelled diagnostic
+python experiments/stage2_design.py       # Amendment 1 element-set selection (about 14 min, 2 workers)
+python experiments/stage2_sprime.py       # Gate S2', failure rates, Ren comparison (fresh seeds)
+python experiments/stage2_noncollinear.py # non-collinear tensor test (about 16 min)
+python experiments/stage2_requirements.py # requirements table
+python experiments/stage2_failure_threshold.py  # exploratory MC failure-threshold curve (about 14 min)
+python experiments/stage2_ren_investigation.py  # CRB-only, seconds
+python experiments/make_gate_table.py; python experiments/make_stage2_figures.py; python experiments/make_interim_abstract.py
 ```
 
 All randomness is seeded from `SeedSequence(20261013)`; runs reproduce exactly. Python 3.14, numpy 2.4, scipy 1.17.
+
+## Status
+
+Stages 0-2 done. Gate S1 passed; Gate S2 (K3orth, pre-registered) FAILED; Gate S2' (amended, selected set, fresh data) passed.
+See `results/gate_table.md` and `CHANGELOG.md`. **Stage 3 (navigation) has not been run.**

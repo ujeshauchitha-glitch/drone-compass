@@ -1,0 +1,88 @@
+{
+ "default_a0.5_b0.00127_c26": {
+  "rows": [
+   {
+    "K": 3,
+    "sigma_med_deg_at_1e8_per_element": 4.377414827226367,
+    "N_total_for_5deg_median": 229941126.83545497,
+    "worst_direction_deg": 161.80093505623557,
+    "singular": 0
+   },
+   {
+    "K": 12,
+    "sigma_med_deg_at_1e8_per_element": 1.2779461638975418,
+    "N_total_for_5deg_median": 78391027.09538125,
+    "worst_direction_deg": 2.0623244666199514,
+    "singular": 0
+   },
+   {
+    "K": 50,
+    "sigma_med_deg_at_1e8_per_element": 0.591835610572589,
+    "N_total_for_5deg_median": 70053877.98836584,
+    "worst_direction_deg": 0.6900711013342701,
+    "singular": 0
+   },
+   {
+    "K": 200,
+    "sigma_med_deg_at_1e8_per_element": 0.2926366778634302,
+    "N_total_for_5deg_median": 68508980.18475601,
+    "worst_direction_deg": 0.3213185460455822,
+    "singular": 0
+   },
+   {
+    "K": 1000,
+    "sigma_med_deg_at_1e8_per_element": 0.13024172764189504,
+    "N_total_for_5deg_median": 67851630.47658226,
+    "worst_direction_deg": 0.13369879457579312,
+    "singular": 0
+   }
+  ],
+  "ren_reported_total_photons": {
+   "O1": 229000000.0,
+   "O2": 52600000.0
+  }
+ },
+ "optimised_a0.9_b0.00508_c10": {
+  "rows": [
+   {
+    "K": 3,
+    "sigma_med_deg_at_1e8_per_element": 9.60207886780338,
+    "N_total_for_5deg_median": 1106399023.002195,
+    "worst_direction_deg": 917656336.0977043,
+    "singular": 55
+   },
+   {
+    "K": 12,
+    "sigma_med_deg_at_1e8_per_element": 0.3733917879831045,
+    "N_total_for_5deg_median": 6692228.511994545,
+    "worst_direction_deg": 13.054804290047183,
+    "singular": 0
+   },
+   {
+    "K": 50,
+    "sigma_med_deg_at_1e8_per_element": 0.1556949305364657,
+    "N_total_for_5deg_median": 4848182.278950974,
+    "worst_direction_deg": 0.25225382703565274,
+    "singular": 0
+   },
+   {
+    "K": 200,
+    "sigma_med_deg_at_1e8_per_element": 0.0770018313336656,
+    "N_total_for_5deg_median": 4743425.622990629,
+    "worst_direction_deg": 0.09662575409920214,
+    "singular": 0
+   },
+   {
+    "K": 1000,
+    "sigma_med_deg_at_1e8_per_element": 0.03390395233283368,
+    "N_total_for_5deg_median": 4597911.935148234,
+    "worst_direction_deg": 0.03643195526943002,
+    "singular": 0
+   }
+  ],
+  "ren_reported_total_photons": {
+   "O1": null,
+   "O2": 394000.0
+  }
+ }
+}
