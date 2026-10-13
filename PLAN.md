@@ -220,3 +220,38 @@ Numerical local observability of the 6-state error model for arms A–D along th
 
 ## A2.6 Compute design and runtime
 Base configuration (dip 45°, σ_mag = 0.5 µT, σ₀ = 10°): full factorial over gyro (3 × 3), σ_d ∈ {0, 2, 10} µT, arms A (9 configs), B (27), C (135), D (135) with σ_rp ∈ {0.3°, 1°, 2°, 5°, 10°}; one-at-a-time at the mid gyro setting for dip ∈ {15°, 66°} and σ_mag ∈ {0.1, 2} µT across σ_d, B, C, D. About 440 configurations; each is one batched run of 200 filters × 6000 steps; at most 2 worker processes; the runtime is estimated and printed before any run over 5 minutes.
+
+---
+
+# AMENDMENT 3 — gate S3(i)′, online-calibration baseline, sensitivity design and Stage 4 details; dated 2026-10-13 20:15 (local), committed BEFORE any of these runs
+
+The study owner chose "option 1 and 3, then Stage 4" after Gate S3(i) failed. **Nothing below changes a pre-registered threshold or the decision question; the failed S3(i) row stays FAILED.**
+
+## A3.1 Gate S3(i)′ (amended) — and an honest statement about what it is
+* S3(i)′ = condition (i) evaluated exactly as in A2.5 (12 tests, same arms and checkpoints, same χ² intervals, family-wise Bonferroni verdict) on trajectory **T0**: the pre-registered trajectory with the linear acceleration set to zero (attitude, noise and every other input identical). Reason: the cause of the S3(i) failure was located (unmodelled deterministic figure-eight acceleration ≤ 0.052 m/s²), and "correctly modelled nominal condition" was the intent of A2.5.
+* **This is post-hoc.** The outcome (12 of 12 inside) was already visible in the diagnostic run reported in CHANGELOG before this amendment, so S3(i)′ is a confirmation of the diagnosis under a formally defined gate, **not an independent test**. S3′ overall = S3(i)′ ∧ S3(ii) ∧ S3(iii); it is reported as a separate row, never as a replacement for S3.
+* The main-grid results (original trajectory, unmodelled acceleration) stay as the pre-registered results. Their sensitivity to the acceleration is measured in the Stage 4 sensitivity study (A3.4, parameter "linear acceleration scale" ∈ {0, 1, 2}).
+
+## A3.2 Online-calibration filters ("cal"): specification
+Purpose: a fair magnetometer baseline that estimates the distortion online, as real systems do. Applies **equally** to arm B (vector) and arm C (axis only); arm D shares the same calibration states because both sensors see the same physical field.
+* **State** (18): δθ (3), δb (3), δh (3, hard-iron, µT), δe (6, symmetric soft-iron E = (e_xx, e_yy, e_zz, e_xy, e_xz, e_yz), dimensionless), δd (3, motor-current-correlated field per unit throttle, µT).
+* **Estimated total field in the body frame:** m̂ = (I + Ê)·R̂ᵀ b_earth + ĥ + c(t)·d̂, with c(t) the (known) throttle profile of A2.1. Initial Ê = 0, ĥ = 0, d̂ = 0.
+* **Priors (consistent with the truth generator):** std(e) = 0.01 for each of the six entries; std(h) = std(d) = max(σ_d/√6, 0.05 µT) per axis. No process noise on the calibration states (constants); Joseph-form update; same sequential update order as before.
+* **Vector sensor (B):** z = m̂ + N(0, σ_mag²); H_θ = (I + Ê) R̂ᵀ[b_e]×, H_h = I, H_d = c(t)·I, H_e = columns (v₁,0,0), (0,v₂,0), (0,0,v₃), (v₂,v₁,0), (v₃,0,v₁), (0,v₃,v₂) with v = R̂ᵀ b_e. R = σ_mag²·I (**no** σ_d or soft-iron inflation: the calibration states model them).
+* **Axis sensor (C):** û_pred = m̂/|m̂|; residual û_meas − s·û_pred, s = sign(û_meas·û_pred); H = s·((I − û_pred û_predᵀ)/|m̂|)·H_m, with H_m the 3×18 Jacobian above; R = σ_rp²·I (rad²).
+* Accelerometer and gyro models, truth generator, random inputs, scenario: unchanged.
+* **Tests before use:** (a) analytic H against a central-difference Jacobian of the measurement functions (< 1e-6); (b) regression: with `soft_iron=False`, σ_d = 0 and calibration priors set to 1e-9, the cal filter reproduces the uncalibrated filter's yaw-error trajectory to < 1e-6 rad for arms B, C, D.
+
+## A3.3 Calibrated decision study (design fixed in advance)
+* Same decision statistic and criterion as A2.3 (≥ 20 % at both 60 s and 600 s, paired bootstrap lower 95 % bound > 0, relative to **B_cal**), same σ_rp grid {0.3°, 1°, 2°, 5°, 10°}, σ_d ∈ {0, 2, 10} µT, soft iron on, original trajectory, 200 paired runs, arms B_cal, C_cal, D_cal.
+* Settings (27): (S1) mid gyro (10 °/h, 0.3 °/√h), dip 45°, σ_mag ∈ {0.1, 0.5, 2} µT; (S2) mid gyro, σ_mag = 0.5 µT, dip ∈ {15°, 66°}; (S3) σ_mag = 0.5 µT, dip 45°, gyro corners (1, 0.1), (1, 1), (100, 0.1), (100, 1). 27 settings × (B + 5 C + 5 D) = 297 configurations.
+* Reported: the decision answer by ε row and N_cap exactly as in A2.2, the break-even σ_rp, the improvement of B_cal over the uncalibrated B, and NEES (6-dof attitude+bias block) for the calibrated arms at the mid-gyro base setting for σ_d ∈ {0, 2, 10} µT (reported, not gated).
+* Whatever the outcome (including "still NO"), it is reported next to the pre-registered result; the pre-registered result is not replaced.
+
+## A3.4 Stage 4 sensitivity (tornado), design fixed in advance
+* **Decision metric:** best-case benefit of the radical-pair channel, m = max over the σ_rp grid of min(reduction₆₀, reduction₆₀₀) of arm C versus B of the same filter type (point estimates, 200 paired runs), reported for both the pre-registered (uncalibrated) and the calibrated filters; also max over σ_rp of reduction₆₀₀ alone.
+* **One-at-a-time variation of every ASSUMED parameter** around the base (mid gyro, dip 45°, σ_mag 0.5 µT, σ_d = 2 µT, soft iron 0.01, acceleration scale 1, vibration σ 0.3 m/s², κ = 1, initial yaw σ 10°), low/high: gyro bias instability {1, 100} °/h; ARW {0.1, 1} °/√h; σ_d {0, 10} µT; dip {15°, 66°}; σ_mag {0.1, 2} µT; soft-iron std {0, 0.02}; linear-acceleration scale {0, 2}; accelerometer vibration σ {0.1, 1.0} m/s²; initial yaw σ {2°, 30°}; κ {0.5}. Each point: arms B and C (5 σ_rp), both filter types. The tornado ranks parameters by the swing in m; "make-or-break" parameters are those whose swing changes the sign or reaches ≥ 20 %.
+* New config keys (defaults reproduce the pre-registered behaviour exactly): `soft_iron_scale` (default 0.01), `vib_sigma` (default 0.3), scenario `a_scale` (default 1).
+
+## A3.5 Stage 4 deliverables (details)
+`REVIEW.md` (the 10 strongest hostile objections with an honest "answered / partly / not answered"), `report.pdf` (5–8 pages: question; what is and is not new; models; validation; results with the pass/fail gate table including S2 FAILED, S2′, S3 FAILED, S3(i)′ post-hoc; negative results; limits; NOT-modelled list; ASSUMED-parameter list), `abstract_draft.md` (≈250–350 words, every number generated from `results/` with a claims check, forbidden words "demonstrated", "validated", "real-time"), `paper_outline.md` (6-page PLANS-style outline). Then the closing summary: gates passed/failed, headline numbers, runtime, surprises, anything that looks wrong, the three weakest points.
