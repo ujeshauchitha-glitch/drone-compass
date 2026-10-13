@@ -221,9 +221,10 @@ def run_filter(arm, cfg, scen, rnd, nees_steps=(), progress=None):
     q_tt = arw**2 * DT
     q_bb = sig_bw**2 * DT
     sig_a2 = cfg["acc_sigma"] ** 2
-    sig_m2 = cfg["sigma_mag"] ** 2 + sd**2 / 3.0
+    si_R = cfg.get("si_R_um", 0.0)                      # EXPLORATORY: per-axis soft-iron std (uT) added to the filter's R (0 = pre-registered)
+    sig_m2 = cfg["sigma_mag"] ** 2 + sd**2 / 3.0 + si_R**2
     sig_rp = cfg["sigma_rp_deg"] * DEG
-    sig_r2 = sig_rp**2 + sd**2 / (3.0 * bnorm**2)
+    sig_r2 = sig_rp**2 + sd**2 / (3.0 * bnorm**2) + (si_R / bnorm) ** 2
     S = rnd.soft_iron() if cfg["soft_iron"] else np.broadcast_to(np.eye(3), (M, 3, 3)).copy()
     d_hi = sd / np.sqrt(6.0) * rnd.dhi
     d_mc = sd / np.sqrt(6.0) * rnd.dmc
