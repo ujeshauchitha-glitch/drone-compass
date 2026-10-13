@@ -77,9 +77,14 @@ def test_crb_scales_inverse_sqrt_N(setup):
     assert np.allclose(r1[ok] / r4[ok], 2.0, rtol=1e-9)
 
 
-def test_mle_recovers_truth_near_crb(setup):
+@pytest.mark.parametrize("name", [
+    pytest.param("K3orth", marks=pytest.mark.xfail(strict=True, reason="exact D2 sign-flip symmetry of the molecule: orthogonal axis-permuted arrays have a 4-fold mirror ambiguity (see CHANGELOG, Gate S2 failure)")),
+    "K3generic_EXPLORATORY",
+])
+def test_mle_recovers_truth_near_crb(setup, name):
+    from experiments.stage2_gate import ELEMENT_SETS as ES
     m, f, s = setup
-    sensor = Sensor(s, ELEMENT_SETS["K3orth"], eps=1.0)
+    sensor = Sensor(s, ES[name], eps=1.0)
     sensor.make_grid(3000)
     rng = np.random.default_rng(9)
     N = 5e8
