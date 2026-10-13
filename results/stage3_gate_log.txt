@@ -1,0 +1,15 @@
+PRE-REGISTER A [5.81, 5.95, 7.24] 6s
+PRE-REGISTER B [5.89, 5.62, 6.33] 15s
+PRE-REGISTER C [5.84, 6.34, 6.83] 25s
+PRE-REGISTER D [5.9, 5.69, 6.28] 37s
+DIAGNOSTIC ( A [5.81, 5.95, 6.12] 43s
+DIAGNOSTIC ( B [5.89, 5.62, 5.81] 51s
+DIAGNOSTIC ( C [5.84, 6.34, 5.85] 61s
+DIAGNOSTIC ( D [5.9, 5.69, 5.76] 72s
+other gyro settings done 191s
+gate ii True ratio range 1.028 1.063 238s
+gate iii arm A [6.29e-09, 1.1873e-08, 7.432e-09, 7.584e-09, 7.742e-09] 387s
+gate iii arm B [2.3e-11, 1.9e-11, 1e-11, 4e-12, 1e-11] 532s
+gate iii arm C [2.9e-11, 1.5e-11, 9e-12, 5e-12, 6e-12] 656s
+gate iii arm D [1.2e-11, 2e-11, 1.3e-11, 5e-12, 1e-11] 797s
+GATE S3: i(bonferroni) False i(uncorrected) False ii True iii True failures [('A', 600.0, 7.244), ('C', 600.0, 6.828)] 797s
