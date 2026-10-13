@@ -128,3 +128,48 @@ Tornado chart over every ASSUMED parameter (one-at-a-time between its low/high s
 
 ## 7. Stage gates and stop rules
 Do not start a stage before the previous gate passes. If a check fails: stop, report, do not work around. Negative results reported plainly; exploratory work in its own section.
+
+---
+
+# AMENDMENT 1 — post-hoc, dated 2026-10-13 07:45 (local), written and committed BEFORE any new run
+
+**This amendment is post-hoc.** It was written after Gate S2 failed for K3orth (see CHANGELOG.md, `results/stage2_gate.json`). The study owner approved option A on 2026-10-13 under the conditions below. **No threshold in this plan is changed.** Everything above this line stays exactly as written; K3orth remains recorded as **FAILED Gate S2**.
+
+## A1.1 Reason
+Gate S2 compares a Monte-Carlo estimator error with the *local* Cramér–Rao bound. The local bound cannot describe a multimodal likelihood. The tensors N5 and N10 are diagonal in one shared frame, so the molecule has exact π-rotation symmetries and Φ(±nx, ±ny, ±nz) = Φ(n). An element set built from axis permutations (K2, K3orth) inherits a 4-fold mirror ambiguity, up to ~90° apart. The global maximum-likelihood estimate then picks a mirror image about half the time, so the gate was ill-posed for K3orth. The failure is kept and reported as a finding, not removed.
+
+## A1.2 Element-set selection rule (fixed before running anything new)
+* **Candidates:** K = 3 elements, R₁ = I (WLOG; a common rotation of all elements is a rotation of the body frame and does not change the objective on the full hemisphere), R₂ and R₃ parametrised by rotation vectors in [−π, π]³ each (6 parameters).
+* **Distinguishability of two axes** n, n′ (hemisphere representatives, axis separation ang(n, n′) = arccos|n·n′|) at fixed N: the symmetrised Poisson KL divergence
+  D(n, n′) = ½ [KL(n‖n′) + KL(n′‖n)] = ½ Σ_j (λ_j − λ′_j) ln(λ_j/λ′_j), λ_j = N·s_j(n), s_j = 1 + ε(Φ_j − Φ̄)/Φ̄.
+* **Objective:** maximise J(R) = min over design-grid pairs with ang(n, n′) > X of D(n, n′), with **X = 10°**, N = 10⁸, ε = 1, β = ρ = σ_g = 0 (D ∝ N for fixed shape, so the maximiser does not depend on N or on ε in this idealised setting).
+* **Design directions:** a fixed 600-point hemisphere Fibonacci grid. **Design seeds:** `SeedSequence(20261013, spawn_key=(3, r))` with r = 0, 1, 2 (three independent restarts).
+* **Optimiser:** `scipy.optimize.differential_evolution` (popsize 15, maxiter 60, `polish=False`, seeded) followed by Nelder–Mead polish; the restart with the largest J is the selected set. All three restarts' J values are reported.
+* **The earlier generic set (K3generic_EXPLORATORY) stays a labelled diagnostic** unless this rule happens to select it; its J and the J of K3orth are reported for comparison.
+* **Exploratory comparators (not gates):** the same rule for K = 2 and K = 4 (R₁ = I plus 1 or 3 free rotations).
+* **Confirmation of the selected set's J** is recomputed on an independent 3000-point grid and reported.
+
+## A1.3 Design/evaluation separation
+* Design uses only the design grid and design seeds above.
+* **Evaluation uses fresh data:** 300 true directions drawn uniformly on the hemisphere with `SeedSequence(20261013, spawn_key=(4, 0))`, and noise streams `spawn_key=(4, 1, i)` for N-grid index i. These are different from the Gate S2 seeds (spawn_key prefix 2) and from the design seeds (prefix 3).
+
+## A1.4 Gate S2′ (amended) — same thresholds as Gate S2, applied to the selected set
+Gate S2′ conditions 1–3 are word-for-word the conditions of section 4.7 (ratio of Monte-Carlo median error to median CRB-predicted σ_med within [0.5, 2] at the three largest N-grid points whose CRB-predicted median error is ≤ 1°; log–log slope −0.5 ± 0.1 over grid points whose CRB-predicted median error is in [0.1°, 3°]; documented Ren et al. comparison), with ε = 1 and Poisson noise only. Gate S2′ is reported as a **separate row** next to the failed Gate S2 row for K3orth. S2′ passing does not convert S2 into a pass.
+* **Reported with Gate S2′ (not gates):** the ambiguity failure rate, defined as the fraction of trials whose axis error exceeds **10°** (= X), versus N, for K3orth, the selected set, and K3generic, at ε = 1 and ε = 0.1 (fresh seeds, `spawn_key=(5, ...)`).
+* **Ren comparison (condition 3):** CRB-based N for a 5° median error with the Ren phenomenological signal (a = 0.5, b = 0.00127, c = 26°, and the optimised row a = 0.9, b = 0.00508, c = 10°) using the selected set, compared with their 2.29×10⁸ / ≈5.3×10⁷ / 3.94×10⁵; all differences listed; any disagreement beyond one order of magnitude is investigated, never tuned.
+
+## A1.5 Does the ambiguity depend on a shared principal frame? (new test)
+Hypothesis: the mirror ambiguity needs all hyperfine tensors to be diagonal in one common frame (exact D₂ symmetry). Test (all orientations ASSUMED; the principal values of N5 and N10 are the verified H16 values):
+* **NC(α):** N5 as in H16; N10 principal frame rotated by α about the axis (1, 1, 0)/√2, α ∈ {0° (control), 5°, 15°, 30°, 60°}; no other change (B₀ = 50 µT, k = 10⁶ s⁻¹).
+* **NC-R2(α):** the R2 model of section 3.5 with N10 rotated by α as above and the radical-B proton tensor rotated by α about (0, 1, 1)/√2, α ∈ {0°, 15°, 30°, 60°}.
+* **Quantities reported per model:** (i) symmetry violation = max over 500 random directions and the three sign-flip operations (nx→−nx with ny→−ny; ny→−ny with nz→−nz; nx→−nx with nz→−nz) of |Φ(s∘n) − Φ(n)|; (ii) for K3orth, the minimum over test directions of the mirror-pair divergence D(n, s∘n) at N = 10⁸ (s ranges over the three flips; directions with ang(n, s∘n) < X excluded), and the photon number N_mirror = 10 N/D_min at which the weakest mirror pair reaches D = 10 nats (decisive likelihood ratio e¹⁰); (iii) "ambiguity survives" is declared iff D_min at N = 10⁸ is below 10 nats, i.e. N_mirror > 10⁸. Exact symmetry gives N_mirror = ∞.
+* The result is labelled as a robustness/mechanism test; no gate depends on it.
+
+## A1.6 Requirements table (section 4.8), with the two additions requested
+For the selected K = 3 set and for K3orth (reference), and for ε ∈ {1, 0.1} plus the two **derived** contrasts ε_R2 and ε_relax (the ratio of the model's relative anisotropy aniso_rel to that of the minimal H16 model, from `results/stage1_robustness.csv`, tagged DERIVED/ASSUMED): detected photons N, photon rate R = N/(η T) at 10 Hz (η = 2/π, ASSUMED), tolerable electronics noise ν_e = ρ√(N/T), for a 5° and a 1° target, for both the median-over-directions CRB-predicted σ_med and the worst-case direction (finite maximum over the 2000-point hemisphere grid; infinite → reported as ∞), for the realism settings of section 4.5. **Additions:** (a) for the baseline setting the *ambiguity failure rate* (error > 10°) from Monte Carlo (300 fresh trials) at the listed N, together with the Monte-Carlo median error at that N as a check of the CRB-derived N; (b) the **relaxation margin**: the anisotropy ΔΦ of the underlying spin model divided by the pre-registered 10⁻³ threshold, for the minimal model, R1, R2, R3 and the relaxation sweep (1e5, 1e6, 1e7 s⁻¹), read from the Stage 1 CSVs. Entries are model-derived or ASSUMED; none is measured.
+
+## A1.7 Scope and stop
+* **Stage 3 is not started.** The Stage 3 sections of this plan are unchanged and remain "planned".
+* After the amendment and Gate S2′, write `interim_abstract.md` from Stages 0–2 only (≈250–350 words), INTERIM-labelled, every number traced to a file in `results/` via a claims-check table generated by a script (`experiments/make_interim_abstract.py`); Stage 3 described as "planned". Forbidden words: "demonstrated", "validated", "real-time". Then **stop and report**.
+* A `results/gate_table.csv` / `.md` records every gate row: S1, S2 (K3orth, FAILED), S2′ (amended).
+* Runtime estimate for the new runs: about 20 minutes on one process (three DE restarts × three K values dominate); no more than 2 worker processes.
